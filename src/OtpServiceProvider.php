@@ -11,7 +11,7 @@ use Prozorov\DataVerification\Locker;
 class OtpServiceProvider extends ServiceProvider
 {
     protected $commands = [
-        // 'Zebrains\LaravelDataLocker\RemoveExpiredCodesCommand',
+        'Zebrains\LaravelDataLocker\RemoveExpiredCodes',
     ];
 
     /**

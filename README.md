@@ -1,5 +1,7 @@
 # Laravel Data Locker
 
+Данная библиотека представляет для себя адаптер для `Laravel` для библиотеки https://github.com/artem-prozorov/data-locker
+
 ## Installation
 
 ```
@@ -139,4 +141,10 @@ class EventServiceProvider extends ServiceProvider
     }
 }
 
+```
+
+## Удаление истекших паролей
+
+```
+php artisan otp:clear
 ```
