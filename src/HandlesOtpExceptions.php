@@ -7,7 +7,7 @@ namespace Zebrains\LaravelDataLocker;
 use Prozorov\DataVerification\Exceptions\VerificationException;
 use Prozorov\DataVerification\Exceptions\LimitException;
 
-class HandlesOtpExceptions
+trait HandlesOtpExceptions
 {
     /**
      * Register a renderable callback.
