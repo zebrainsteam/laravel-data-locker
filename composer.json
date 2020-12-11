@@ -1,0 +1,27 @@
+{
+    "name": "zebrains/laravel-data-verificator",
+    "description": "Laravel adapter for data-locker library",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Prozorov",
+            "email": "artem.g.prozorov@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Zebrains\\LaravelDataLocker\\": "src/"
+        }
+    },
+    "require": {
+        "prozorov/data-locker": "^0.0.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zebrains\\LaravelDataLocker\\OtpServiceProvider"
+            ]
+        }
+    }
+}
