@@ -6,6 +6,7 @@ namespace Zebrains\LaravelDataLocker;
 
 use Datetime;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Prozorov\DataVerification\Contracts\CodeRepositoryInterface;
 use Prozorov\DataVerification\Models\Code;
 use Prozorov\DataVerification\Types\Address;
@@ -103,5 +104,29 @@ class EloquentRepository implements CodeRepositoryInterface
         }
 
         return $query;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function openTransaction(): void
+    {
+        DB::beginTransaction();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function commitTransaction(): void
+    {
+        DB::commit();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rollbackTransaction(): void
+    {
+        DB::rollBack();
     }
 }

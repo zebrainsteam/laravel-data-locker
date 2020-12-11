@@ -15,6 +15,7 @@ return [
             'limit_per_hour' => 10,
             'attempts' => 3,
             'password_validation_period' => 3600,
+            'allowed_symbols' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
         ],
     ],
     'transport' => [
