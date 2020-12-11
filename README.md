@@ -110,5 +110,33 @@ class Handler extends ExceptionHandler
         $this->registerOtpExceptionHandlers();
     }
 }
+```
+
+## Система событий
+
+Вы можете изменить поведение библиотеки с помощью системы событий. На данный момент есть событие, вызываемое перед генерацией одноразового пароля. Особенно полезно это может быть для тестирования чтобы менять поведение системы только для определенных адресов.
+
+В качестве примера указана подмена генерируемого кода, если указан определенный номер телефона:
+
+```
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
+use Prozorov\DataVerification\Events\OtpGenerationEvent;
+
+class EventServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        Event::listen(function (OtpGenerationEvent $event) {
+            if ((string) $event->getAddress() === '79181234567') {
+                $event->setOtp('1234');
+            }
+        });
+    }
+}
 
 ```
