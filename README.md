@@ -77,3 +77,38 @@ class VerificationController extends Controller
     }
 }
 ```
+
+### Обработка ошибок
+
+В системе есть ряд исключений. Часть из них выбрасываются в случае нарушения лимитов запроса одноразового пароля или в случе некорректной валидации пароля. Такие исключения не должны приводить к 500 ошибкам. Для того, чтобы Laravel корректно обрабатывал такие исключения, нужно дать инструкции в ErrorHandler. В данной библиотеке есть специальный трайт `Zebrains\LaravelDataLocker\HandlesOtpExceptions`, который загружает такие инструкции. Подключите этот трайт в класс `App\Exceptions\Handler` и вызовите метод `registerOtpExceptionHandlers` внутри метода `register`.
+
+Пример:
+```
+<?php
+
+namespace App\Exceptions;
+
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Zebrains\LaravelDataLocker\HandlesOtpExceptions;
+use Throwable;
+
+class Handler extends ExceptionHandler
+{
+    use HandlesOtpExceptions;
+
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
+    ];
+
+    public function register()
+    {
+        $this->reportable(function (Throwable $e) {
+            //
+        });
+
+        $this->registerOtpExceptionHandlers();
+    }
+}
+
+```
