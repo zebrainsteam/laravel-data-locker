@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "prozorov/data-locker": "dev-master"
+        "prozorov/data-locker": "^0.1"
     },
     "extra": {
         "laravel": {
